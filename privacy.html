@@ -11,7 +11,7 @@
 <body>
   <header class="site">
     <div class="wrap">
-      <a class="brand" href="./"><img src="mark.svg" alt="">LUDO<b>RA</b></a>
+      <a class="brand" href="./"><img src="mark.svg" alt=""><span>LUDO<b>RA</b></span></a>
       <nav class="site">
         <a href="privacy.html" aria-current="page">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -48,52 +48,52 @@
         </thead>
         <tbody>
           <tr>
-            <td>Display name, avatar and random player ID</td>
-            <td>When you play online</td>
-            <td>To seat you in a room and show you to the other players</td>
-            <td>For as long as the room exists. It is deleted when the room closes.</td>
+            <td data-label="What">Display name, avatar and random player ID</td>
+            <td data-label="When">When you play online</td>
+            <td data-label="Why">To seat you in a room and show you to the other players</td>
+            <td data-label="How long">For as long as the room exists. It is deleted when the room closes.</td>
           </tr>
           <tr>
-            <td>Game moves, strikes and results</td>
-            <td>Online matches</td>
-            <td>To run the match fairly on the server</td>
-            <td>Until the room closes. If you are signed in, the result is added to your stats and rating.</td>
+            <td data-label="What">Game moves, strikes and results</td>
+            <td data-label="When">Online matches</td>
+            <td data-label="Why">To run the match fairly on the server</td>
+            <td data-label="How long">Until the room closes. If you are signed in, the result is added to your stats and rating.</td>
           </tr>
           <tr>
-            <td>Chat messages, emotes and quick phrases</td>
-            <td>Online rooms. Typed messages are available only in private rooms; quick match offers emotes and set phrases only.</td>
-            <td>To deliver them to the other players in the room</td>
-            <td>Until the room closes. We don't keep chat history after that.</td>
+            <td data-label="What">Chat messages, emotes and quick phrases</td>
+            <td data-label="When">Online rooms. Typed messages are available only in private rooms; quick match offers emotes and set phrases only.</td>
+            <td data-label="Why">To deliver them to the other players in the room</td>
+            <td data-label="How long">Until the room closes. We don't keep chat history after that.</td>
           </tr>
           <tr>
-            <td>Username and password</td>
-            <td>If you create an account</td>
-            <td>To sign you in</td>
-            <td>Until you delete the account. Passwords are stored only as a one-way scrypt hash, never in readable form.</td>
+            <td data-label="What">Username and password</td>
+            <td data-label="When">If you create an account</td>
+            <td data-label="Why">To sign you in</td>
+            <td data-label="How long">Until you delete the account. Passwords are stored only as a one-way scrypt hash, never in readable form.</td>
           </tr>
           <tr>
-            <td>Profile and stats (name, avatar, games played, wins, captures and similar)</td>
-            <td>If you are signed in</td>
-            <td>To sync them between your devices</td>
-            <td>Until you delete the account</td>
+            <td data-label="What">Profile and stats (name, avatar, games played, wins, captures and similar)</td>
+            <td data-label="When">If you are signed in</td>
+            <td data-label="Why">To sync them between your devices</td>
+            <td data-label="How long">Until you delete the account</td>
           </tr>
           <tr>
-            <td>Skill rating and rated-game history</td>
-            <td>Signed-in players in quick matches against other signed-in players</td>
-            <td>For the leaderboard</td>
-            <td>Until you delete the account</td>
+            <td data-label="What">Skill rating and rated-game history</td>
+            <td data-label="When">Signed-in players in quick matches against other signed-in players</td>
+            <td data-label="Why">For the leaderboard</td>
+            <td data-label="How long">Until you delete the account</td>
           </tr>
           <tr>
-            <td>Session tokens</td>
-            <td>Each sign-in</td>
-            <td>To keep you signed in</td>
-            <td>Until you sign out or delete the account. Tokens are stored only in hashed form.</td>
+            <td data-label="What">Session tokens</td>
+            <td data-label="When">Each sign-in</td>
+            <td data-label="Why">To keep you signed in</td>
+            <td data-label="How long">Until you sign out or delete the account. Tokens are stored only in hashed form.</td>
           </tr>
           <tr>
-            <td>IP address and basic request details (time, address requested)</td>
-            <td>Every connection</td>
-            <td>Security: rate limiting to stop password guessing, and diagnosing faults</td>
-            <td>Rate-limit counters last minutes and are held in memory only. Web server logs are deleted after 14 days.</td>
+            <td data-label="What">IP address and basic request details (time, address requested)</td>
+            <td data-label="When">Every connection</td>
+            <td data-label="Why">Security: rate limiting to stop password guessing, and diagnosing faults</td>
+            <td data-label="How long">Rate-limit counters last minutes and are held in memory only. Web server logs are deleted after 14 days.</td>
           </tr>
         </tbody>
       </table>

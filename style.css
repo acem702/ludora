@@ -107,10 +107,18 @@ table { width: 100%; border-collapse: collapse; font-size: 15px; }
 th, td { text-align: left; vertical-align: top; padding: 10px 8px; border-bottom: 1px solid var(--line); }
 th { font-size: 13px; color: var(--muted); font-weight: 700; }
 .table-scroll { overflow-x: auto; }
+/* On phones each row becomes a small card, labelled cell by cell. */
+@media (max-width: 600px) {
+  table, tbody, tr, td { display: block; }
+  thead { display: none; }
+  tr { border: 1px solid var(--line); border-radius: 14px; padding: 6px 14px; margin-bottom: 10px; background: var(--surface); }
+  td { border: 0; padding: 6px 0; }
+  td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+}
 
 .hero { text-align: center; padding: 24px 0 8px; }
 .hero img { width: 120px; height: 120px; }
-.hero h1 { font-size: 44px; letter-spacing: 0.2em; margin: 14px 0 4px; padding-left: 0.2em; }
+.hero h1 { font-size: 44px; letter-spacing: 0.2em; margin: 14px 0 10px; padding-left: 0.2em; }
 .hero h1 b { color: var(--accent); }
 .links { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 28px; }
 .links a {
