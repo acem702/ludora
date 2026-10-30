@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delete Ludora Account</title>
+  <meta name="description" content="Delete your Ludora account and the data stored with it.">
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="mark.svg" alt="">LUDO<b>RA</b></a>
+      <nav class="site">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="delete-account.html" aria-current="page">Delete account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Delete your Ludora account</h1>
+    <p class="lead">This permanently removes your account and everything stored with it on our server.</p>
+
+    <h2>What gets deleted</h2>
+    <ul>
+      <li>Your username and password</li>
+      <li>Your profile: display name and avatar</li>
+      <li>Your synced stats, skill rating, rating history and leaderboard places</li>
+      <li>Every sign-in session, on every device</li>
+    </ul>
+    <p>It's removed from the live server straight away and from our backups within 7 days. Nothing is kept. Stats saved on your phone stay there until you uninstall the app, and you can keep playing as a guest.</p>
+
+    <h2>Option 1: in the app</h2>
+    <p>Open Ludora, tap your profile at the top of the home screen, then <strong>Account → Delete account</strong>. Enter your password and confirm.</p>
+
+    <h2>Option 2: here</h2>
+    <div class="card">
+      <form id="delete-form" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <label class="check"><input id="confirm" type="checkbox"> I understand this can't be undone.</label>
+        <button class="danger" id="submit" type="submit" disabled>DELETE MY ACCOUNT</button>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <h2>Option 3: by email</h2>
+    <p>Forgot your password? Email <a href="mailto:akabasuleiman@gmail.com?subject=Delete%20my%20Ludora%20account">akabasuleiman@gmail.com</a> with your username and the subject "Delete my Ludora account". We may ask you to confirm the request, and we will delete the account within 30 days, usually much sooner.</p>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">Ludora is made by Suleiman Akaaba and Rasheedah Musa. <a href="privacy.html">Privacy policy</a></div>
+  </footer>
+
+  <script>
+    // Signs in to the game server, then deletes the account with the same password check the app uses.
+    const API = 'https://132-226-86-59.sslip.io/api';
+    const form = document.getElementById('delete-form');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const confirmBox = document.getElementById('confirm');
+    const submit = document.getElementById('submit');
+    const status = document.getElementById('status');
+
+    const ready = () => {
+      submit.disabled = !(username.value.trim() && password.value && confirmBox.checked);
+    };
+    [username, password, confirmBox].forEach((el) => el.addEventListener('input', ready));
+    confirmBox.addEventListener('change', ready);
+
+    const show = (kind, text) => {
+      status.className = 'status ' + kind;
+      status.textContent = text;
+    };
+
+    async function call(method, route, body, token) {
+      const res = await fetch(API + route, {
+        method,
+        headers: { 'content-type': 'application/json', ...(token ? { authorization: 'Bearer ' + token } : {}) },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'The server said no (' + res.status + ').');
+      return data;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submit.disabled) return;
+      submit.disabled = true;
+      status.className = 'status';
+      try {
+        const { token } = await call('POST', '/login', { username: username.value.trim(), password: password.value });
+        await call('DELETE', '/me', { password: password.value }, token);
+        form.reset();
+        show('ok', 'Your account has been deleted. Thanks for playing Ludora.');
+      } catch (err) {
+        show('error', err instanceof TypeError ? "Can't reach the game server. Check your connection and try again, or email us." : err.message);
+        ready();
+      }
+    });
+  </script>
+</body>
+</html>
