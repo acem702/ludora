@@ -164,3 +164,72 @@ button.danger:disabled { opacity: 0.5; cursor: not-allowed; }
 
 footer.site { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer.site .wrap { padding-top: 20px; padding-bottom: 28px; }
+
+/* Download call to action */
+nav.site a.nav-cta {
+  color: var(--text);
+  font-weight: 700;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 4px 12px;
+  line-height: 1.5;
+}
+nav.site a.nav-cta:hover { background: var(--accent); color: #12152e; }
+
+.cta { margin: 22px 0 6px; }
+.badge {
+  display: inline-block;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+}
+.badge img { height: 68px; width: auto; display: block; }
+.cta-note { color: var(--muted); font-size: 14px; margin-bottom: 0; }
+
+a.button {
+  display: inline-block;
+  background: var(--accent);
+  color: #12152e;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 14px 24px;
+  border-radius: 12px;
+}
+a.button:hover { filter: brightness(1.08); }
+.cta-inline { margin: 26px 0 8px; }
+
+/* Feature grid and tick list */
+.features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 16px 0 8px; }
+.feature {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+}
+.feature h3 { margin: 0 0 6px; font-size: 16px; }
+.feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+ul.ticks { list-style: none; padding: 0; margin-top: 12px; }
+ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 10px; }
+ul.ticks li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+/* If the Google Play badge image fails to load, the link becomes a plain button. */
+.badge-fallback {
+  background: var(--accent);
+  color: #12152e;
+  font-weight: 800;
+  padding: 14px 24px;
+}
+.badge-fallback img { display: none; }
+.badge-fallback::after { content: "Get it on Google Play"; }
